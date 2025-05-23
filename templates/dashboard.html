@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SarcastiSense Live</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <style>
+      body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+      #meter { font-size: 4rem; }
+    </style>
+  </head>
+  <body>
+    <h1>SarcastiSense</h1>
+    <div id="meter">Sarcasm Level: 0%</div>
+  </body>
+</html> 
