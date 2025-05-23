@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarcasm Detection App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen text-white">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                    🎭 Sarcasm Detection
+                </h1>
+                <p class="text-gray-400 text-lg">Record your voice to detect sarcasm in real-time</p>
+            </div>
+            
+            <!-- Recording Section -->
+            <div class="bg-gray-800 rounded-2xl shadow-2xl p-8 mb-8 border border-gray-700">
+                <div class="flex flex-col items-center">
+                    <div class="w-full max-w-md">
+                        <div class="relative">
+                            <div id="visualizer" class="w-full h-48 bg-gray-900 rounded-xl mb-6 overflow-hidden"></div>
+                            <button id="recordButton" class="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold py-4 px-8 rounded-xl transition duration-300 flex items-center justify-center transform hover:scale-105">
+                                <span id="recordIcon" class="text-2xl">🎙️</span>
+                                <span id="recordText" class="ml-3 text-lg">Start Recording</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="bg-gray-800 rounded-2xl shadow-2xl p-8 hidden border border-gray-700">
+                <h2 class="text-2xl font-semibold mb-6 text-center">Analysis Results</h2>
+                
+                <!-- Transcription -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium text-gray-400 mb-3">Transcription</h3>
+                    <div class="bg-gray-900 rounded-xl p-4">
+                        <p id="transcription" class="text-gray-300 italic"></p>
+                    </div>
+                </div>
+
+                <!-- Sarcasm Score -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium text-gray-400 mb-3">Sarcasm Score</h3>
+                    <div id="sarcasmScore" class="text-4xl font-bold text-center py-6 rounded-xl"></div>
+                </div>
+
+                <!-- Audio Features -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gray-900 p-6 rounded-xl transform transition duration-300 hover:scale-105">
+                        <h4 class="text-sm font-medium text-gray-400 mb-2">Pitch</h4>
+                        <p id="pitchValue" class="text-2xl font-semibold text-blue-400"></p>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-xl transform transition duration-300 hover:scale-105">
+                        <h4 class="text-sm font-medium text-gray-400 mb-2">Energy</h4>
+                        <p id="energyValue" class="text-2xl font-semibold text-purple-400"></p>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-xl transform transition duration-300 hover:scale-105">
+                        <h4 class="text-sm font-medium text-gray-400 mb-2">Zero Crossing Rate</h4>
+                        <p id="zcrValue" class="text-2xl font-semibold text-green-400"></p>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-xl transform transition duration-300 hover:scale-105">
+                        <h4 class="text-sm font-medium text-gray-400 mb-2">Spectral Centroid</h4>
+                        <p id="spectralValue" class="text-2xl font-semibold text-yellow-400"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading" class="hidden">
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+                    <span class="text-xl text-gray-400">Analyzing...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html> 

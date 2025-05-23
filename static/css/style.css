@@ -1,0 +1,134 @@
+/* Custom styles */
+.recording {
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+}
+
+#visualizer {
+    background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#visualizer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Sarcasm score colors */
+.score-high {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.score-medium {
+    background: linear-gradient(135deg, #d97706, #92400e);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.score-low {
+    background: linear-gradient(135deg, #16a34a, #166534);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Feature value animations */
+.feature-value {
+    transition: all 0.3s ease;
+}
+
+.feature-value:hover {
+    transform: scale(1.05);
+}
+
+/* Loading animation */
+.loading-spinner {
+    border: 4px solid rgba(59, 130, 246, 0.1);
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Fade in animation for results */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#results:not(.hidden) {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Hover effects for feature cards */
+.bg-gray-900 {
+    transition: all 0.3s ease;
+}
+
+.bg-gray-900:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient text animation */
+@keyframes gradientText {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.bg-clip-text {
+    background-size: 200% auto;
+    animation: gradientText 5s ease infinite;
+} 
